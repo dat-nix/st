@@ -9,9 +9,9 @@ static char *font = "JetBrainsMono Nerd "
                     "Font:style=Regular:size=12.5:antialias=true:hinting=true";
 static int borderpx = 2;
 /* Spare fonts */
-static char *font2[] = {"JetBrainsMono Nerd Font:style=Bold:size=11",
-                        "JetBrainsMono Nerd Font:style=Italic:size=11",
-                        "Noto Color Emoji:size=11", "Noto Sans CJK JP:size=11"};
+static char *font2[] = {"JetBrainsMono Nerd Font:style=Bold:size=10",
+                        "JetBrainsMono Nerd Font:style=Italic:size=10",
+                        "Noto Color Emoji:size=10", "Noto Sans CJK JP:size=10"};
 
 /*
  * What program is execed by st depends of these precedence rules:
