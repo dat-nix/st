@@ -9,9 +9,9 @@ static char *font = "JetBrainsMono Nerd "
                     "Font:style=Regular:size=12.5:antialias=true:hinting=true";
 static int borderpx = 2;
 /* Spare fonts */
-static char *font2[] = {"JetBrainsMono Nerd Font:style=Bold:size=9",
-                        "JetBrainsMono Nerd Font:style=Italic:size=9",
-                        "Noto Color Emoji:size=9", "Noto Sans CJK JP:size=9"};
+static char *font2[] = {"JetBrainsMono Nerd Font:style=Bold:size=10",
+                        "JetBrainsMono Nerd Font:style=Italic:size=10",
+                        "Noto Color Emoji:size=10", "Noto Sans CJK JP:size=10"};
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -111,7 +111,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 1.0;
+float alpha = 0.98;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
