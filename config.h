@@ -74,8 +74,8 @@ static unsigned int cursorthickness = 2;
 
 /*
  * 1: render most of the lines/blocks characters without using the font for
- *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
- *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
+ * perfect alignment between cells (U2500 - U259F except dashes/diagonals).
+ * Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
 const int boxdraw = 0;
@@ -100,78 +100,49 @@ char *termname = "st-256color";
  * the st.info and appropriately install the st.info in the environment where
  * you use this st version.
  *
- *	it#$tabspaces,
+ * it#$tabspaces,
  *
  * Secondly make sure your kernel is not expanding tabs. When running `stty
  * -a` »tab0« should appear. You can tell the terminal to not expand tabs by
- *  running following command:
+ * running following command:
  *
- *	stty tabs
+ * stty tabs
  */
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.96;
+float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
-// static const char *colorname[] = {
-//     /* Oxocarbon */
-//     "#161616", /*  0: black    */
-//     "#ee5396", /*  1: red      */
-//     "#42be65", /*  2: green    */
-//     "#ffe97b", /*  3: yellow   */
-//     "#33b1ff", /*  4: blue     */
-//     "#be95ff", /*  5: magenta  */
-//     "#3ddbd9", /*  6: cyan     */
-//     "#dde1e6", /*  7: white    */
-//     "#525252", /*  8: brblack  */
-//     "#ff7eb6", /*  9: brred    */
-//     "#78e08f", /* 10: brgreen  */
-//     "#fddc69", /* 11: bryellow */
-//     "#78cfff", /* 12: brblue   */
-//     "#d4bbff", /* 13: brmagenta*/
-//     "#82f0ff", /* 14: brcyan   */
-//     "#ffffff", /* 15: brwhite  */
-// };
+static const char *colorname[] = {
+    /* Gruvbox Dark Theme */
+    "#282828", /* 0: black     (Background) */
+    "#cc241d", /* 1: red       */
+    "#98971a", /* 2: green     */
+    "#d79921", /* 3: yellow    */
+    "#458588", /* 4: blue      */
+    "#b16286", /* 5: magenta   */
+    "#689d6a", /* 6: cyan      */
+    "#a89984", /* 7: white     */
+
+    "#928374", /* 8: brblack   (Bright Gray) */
+    "#fb4934", /* 9: brred     */
+    "#b8bb26", /* 10: brgreen   */
+    "#fabd2f", /* 11: bryellow  */
+    "#83a598", /* 12: brblue    */
+    "#d3869b", /* 13: brmagenta */
+    "#8ec07c", /* 14: brcyan    */
+    "#ebdbb2", /* 15: brwhite   (Foreground) */
+};
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-// unsigned int defaultfg = 7;
-// unsigned int defaultbg = 0;
-// unsigned int defaultcs = 12;
-// static unsigned int defaultrcs = 15;
-
-// /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-    /* solarized dark */
-    "#073642", /*  0: black    */
-    "#dc322f", /*  1: red      */
-    "#859900", /*  2: green    */
-    "#b58900", /*  3: yellow   */
-    "#268bd2", /*  4: blue     */
-    "#d33682", /*  5: magenta  */
-    "#2aa198", /*  6: cyan     */
-    "#eee8d5", /*  7: white    */
-    "#002b36", /*  8: brblack  */
-    "#cb4b16", /*  9: brred    */
-    "#586e75", /* 10: brgreen  */
-    "#657b83", /* 11: bryellow */
-    "#839496", /* 12: brblue   */
-    "#6c71c4", /* 13: brmagenta*/
-    "#93a1a1", /* 14: brcyan   */
-    "#fdf6e3", /* 15: brwhite  */
-};
-//
-// /*
-//  * Default colors (colorname index)
-//  * foreground, background, cursor, reverse cursor
-//  */
-unsigned int defaultfg = 12;
-unsigned int defaultbg = 8;
-unsigned int defaultcs = 14;
-static unsigned int defaultrcs = 15;
+unsigned int defaultfg = 15; /* Gruvbox Foreground (ebdbb2) */
+unsigned int defaultbg = 0;  /* Gruvbox Background (282828) */
+unsigned int defaultcs = 15; /* Con trỏ cùng màu chữ chính */
+static unsigned int defaultrcs = 0;
 
 /*
  * Default shape of cursor
@@ -185,7 +156,6 @@ static unsigned int cursorshape = 2;
 /*
  * Default columns and rows numbers
  */
-
 static unsigned int cols = 80;
 static unsigned int rows = 24;
 
@@ -214,7 +184,7 @@ static uint forcemousemod = ShiftMask;
  * Beware that overloading Button1 will disable the selection.
  */
 static MouseShortcut mshortcuts[] = {
-    /* mask                 button   function        argument       release */
+    /* mask                 button  function   argument        release */
     {XK_ANY_MOD, Button4, kscrollup, {.i = 1}, 0, /* !alt */ -1},
     {XK_ANY_MOD, Button5, kscrolldown, {.i = 1}, 0, /* !alt */ -1},
     {XK_ANY_MOD, Button2, selpaste, {.i = 0}, 1},
@@ -229,7 +199,7 @@ static MouseShortcut mshortcuts[] = {
 #define TERMMOD (ControlMask | ShiftMask)
 
 static Shortcut shortcuts[] = {
-    /* mask                 keysym          function        argument */
+    /* mask                 keysym        function        argument */
     {XK_ANY_MOD, XK_Break, sendbreak, {.i = 0}},
     {ControlMask, XK_Print, toggleprinter, {.i = 0}},
     {ShiftMask, XK_Print, printscreen, {.i = 0}},
@@ -256,7 +226,7 @@ static Shortcut shortcuts[] = {
  * appkey value:
  * * 0: no value
  * * > 0: keypad application mode enabled
- * *   = 2: term.numlock = 1
+ * * = 2: term.numlock = 1
  * * < 0: keypad application mode disabled
  * appcursor value:
  * * 0: no value
